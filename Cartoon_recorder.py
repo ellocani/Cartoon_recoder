@@ -4,6 +4,7 @@ import os
 from datetime import datetime
 import random
 import math
+import argparse
 
 
 def cartoon_filter(frame):
@@ -153,12 +154,26 @@ class ParticleSystem:
 
 
 def main():
+    parser = argparse.ArgumentParser(description="비디오 카툰화 프로그램")
+    parser.add_argument(
+        "--camera",
+        type=str,
+        default="0",
+        help="카메라 소스 (0: 웹캠, rtsp://...: RTSP 주소)",
+    )
+    args = parser.parse_args()
+
     video_dir = "Video"
     if not os.path.exists(video_dir):
         os.makedirs(video_dir)
 
-    # 카메라 기본 웹캡 (0)
-    cap = cv2.VideoCapture("rtsp://210.99.70.120:1935/live/cctv001.stream")
+    # 카메라 소스 설정
+    camera_source = args.camera
+    if camera_source.isdigit():
+        camera_source = int(camera_source)  # 웹캠 번호
+
+    # 카메라 연결
+    cap = cv2.VideoCapture(camera_source)
     if not cap.isOpened():
         print("카메라를 열 수 없습니다.")
         return

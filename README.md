@@ -51,6 +51,26 @@
   pip install opencv-python numpy
   ```
   
+  ## 카메라 설정
+  
+  프로그램 실행 시 다음과 같이 카메라 소스를 지정할 수 있습니다:
+  
+  1. 기본 웹캠 사용:
+  ```bash
+  python Cartoon_recorder.py --camera 0
+  ```
+  
+  2. RTSP 스트림 사용:
+  ```bash
+  python Cartoon_recorder.py --camera "rtsp://카메라주소"
+  ```
+  
+  예시:
+  - 웹캠: `python Cartoon_recorder.py --camera 0`
+  - 천안시 교통 CCTV: `python Cartoon_recorder.py --camera "rtsp://210.99.70.120:1935/live/cctv001.stream"`
+  
+  기본값은 웹캠(0)입니다. 카메라 소스를 지정하지 않으면 자동으로 웹캠을 사용합니다.
+  
   ## 사용 방법
   
   1. 프로그램 실행:
