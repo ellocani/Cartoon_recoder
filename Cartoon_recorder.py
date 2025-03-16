@@ -7,11 +7,11 @@ import math
 
 
 def cartoon_filter(frame):
-    # 1. 이미지 크기 축소 
+    # 1. 이미지 크기 축소
     height, width = frame.shape[:2]
     small = cv2.resize(frame, (width // 2, height // 2))
 
-    # 2. 색상 감소 
+    # 2. 색상 감소
     small = small // 32 * 32 + 16
 
     # 3. 양방향 필터로 스무딩 처리
